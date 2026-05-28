@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,51 +22,51 @@
             font-family: 'Fredoka', sans-serif;
         }
         
-        /* Textura sutil de quadro negro de giz usando gradientes CSS */
+        /* Textura de quadro negro escuro (grafite/obsidiana) usando gradientes CSS */
         .chalkboard-bg {
-            background: radial-gradient(circle, #1a3a2d 0%, #0d1f18 100%);
-            box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8);
+            background: radial-gradient(circle, #22252a 0%, #0f1115 100%);
+            box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.95);
         }
 
         /* Efeito de brilho de giz para as linhas e notas */
         .chalk-glow {
-            filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.6));
+            filter: drop-shadow(0px 0px 3px rgba(255, 255, 255, 0.65));
         }
     </style>
 </head>
-<body class="bg-slate-900 text-white min-h-screen flex flex-col justify-between selection:bg-emerald-800">
+<body class="bg-slate-950 text-white min-h-screen flex flex-col justify-between selection:bg-emerald-800">
 
     <!-- Cabeçalho Principal -->
-    <header class="p-4 text-center bg-slate-950/60 border-b border-slate-800/80 backdrop-blur">
+    <header class="p-4 text-center bg-slate-900/60 border-b border-slate-800/50 backdrop-blur">
         <h1 class="text-3xl md:text-4xl font-bold tracking-wide text-emerald-400 flex items-center justify-center gap-2">
             <span>🎓</span> Quadro Negro Musical <span>🎵</span>
         </h1>
         <p class="text-sm md:text-base text-slate-400 mt-1">
-            Toque nas linhas ou espaços para desenhar e ouvir as notas. Crie sua melodia!
+            Toque nas linhas ou espaços para desenhar e ouvir as notas. Crie a sua melodia!
         </p>
     </header>
 
-    <!-- Área Principal do Aplicativo -->
+    <!-- Área Principal da Aplicação -->
     <main class="flex-grow flex flex-col items-center justify-center p-4 max-w-6xl w-full mx-auto gap-4">
         
         <!-- Painel de Informação em Tempo Real (Mostra qual nota está sob o cursor) -->
-        <div class="w-full bg-slate-950/40 px-4 py-2.5 rounded-full border border-slate-800/40 flex justify-between items-center text-sm md:text-base">
+        <div class="w-full bg-slate-900/40 px-4 py-2.5 rounded-full border border-slate-800/40 flex justify-between items-center text-sm md:text-base">
             <div class="flex items-center gap-2">
                 <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
                 <span id="info-nota" class="text-slate-300 font-medium">Posicione o cursor no quadro...</span>
             </div>
             <div id="status-som" class="text-xs md:text-sm text-slate-500">
-                Som habilitado 🔊
+                Som ativo 🔊
             </div>
         </div>
 
-        <!-- O Quadro Negro Musical -->
-        <div class="relative w-full aspect-[2/1] md:aspect-[2.4/1] chalkboard-bg rounded-2xl border-4 border-amber-900/80 shadow-2xl overflow-hidden cursor-crosshair">
+        <!-- O Quadro Negro Musical com Tema de Grafite Escuro e Borda Metálica -->
+        <div class="relative w-full aspect-[2/1] md:aspect-[2.4/1] chalkboard-bg rounded-2xl border-4 border-zinc-800 shadow-2xl overflow-hidden cursor-crosshair">
             <!-- Canvas interativo onde o mágica acontece -->
             <canvas id="canvas-musical" class="absolute inset-0 w-full h-full chalk-glow"></canvas>
         </div>
 
-        <!-- Painel de Controle (Botões Grandes e Responsivos) -->
+        <!-- Painel de Controlo (Botões Grandes e Responsivos) -->
         <div class="w-full grid grid-cols-2 sm:grid-cols-4 gap-3">
             
             <!-- Seleção do tipo de nota (Semínima) -->
@@ -85,23 +85,23 @@
             </button>
 
             <!-- Botão de Limpar todo o quadro -->
-            <button onclick="limparQuadro()" class="bg-red-900/80 hover:bg-red-800 active:scale-95 transition text-red-200 font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg border-b-4 border-red-950">
+            <button onclick="limparQuadro()" class="bg-red-950/80 hover:bg-red-900 active:scale-95 transition text-red-200 font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg border-b-4 border-red-950">
                 <span class="text-xl">🗑️</span> Limpar
             </button>
             
         </div>
 
-        <!-- Controles de Áudio e Playback -->
+        <!-- Controlos de Áudio e Reprodução -->
         <div class="w-full flex flex-col sm:flex-row gap-3 items-center justify-between mt-2">
             
             <!-- Botão Gigante de Playback -->
             <button id="btn-tocar" onclick="togglePlayMelodia()" class="w-full sm:w-auto bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 active:scale-95 transition text-slate-950 font-bold py-4 px-8 rounded-2xl flex items-center justify-center gap-3 text-lg shadow-xl border-b-4 border-amber-700">
-                <span id="play-icon">▶️</span> <span id="play-text">Ouvir Minha Melodia</span>
+                <span id="play-icon">▶️</span> <span id="play-text">Ouvir a Minha Melodia</span>
             </button>
 
             <!-- Opções adicionais (Ativar/Desativar Som Geral) -->
             <button onclick="toggleSomGeral()" id="btn-som" class="w-full sm:w-auto px-5 py-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 font-medium transition active:scale-95 border border-slate-700 text-sm flex items-center justify-center gap-2">
-                <span>🔊</span> Som: Ativado
+                <span>🔊</span> Som: Ativo
             </button>
             
         </div>
@@ -109,7 +109,7 @@
     </main>
 
     <!-- Rodapé de Informação Pedagógica -->
-    <footer class="p-4 text-center bg-slate-950/40 text-xs md:text-sm text-slate-500 border-t border-slate-800/40">
+    <footer class="p-4 text-center bg-slate-900/20 text-xs md:text-sm text-slate-500 border-t border-slate-800/30">
         <p>Desenvolvido para aulas de musicalização infantil e teoria musical básica.</p>
         <p class="mt-1">Dica pedagógica: Use as notas de baixo para cima para demonstrar sons Graves ➡️ Agudos.</p>
     </footer>
@@ -118,7 +118,7 @@
     <script>
         // --- CONFIGURAÇÕES MUSICAIS DO PENTAGRAMA ---
         // Mapeamento das 13 alturas possíveis (Linhas e Espaços)
-        // Começando do Dó Central (abaixo da pauta) até o Lá agudo (acima)
+        // Começando do Dó Central (abaixo da pauta) até ao Lá agudo (acima)
         const notasMusicais = [
             { id: 0, nome: "Dó (C4)", freq: 261.63, descricao: "Linha Suplementar Inferior", extraLine: true },
             { id: 1, nome: "Ré (D4)", freq: 293.66, descricao: "Espaço abaixo da pauta", extraLine: false },
@@ -135,18 +135,18 @@
             { id: 12, nome: "Lá (A5)", freq: 880.00, descricao: "Linha Suplementar Superior", extraLine: true }
         ];
 
-        // --- ESTADO DO APLICATIVO ---
+        // --- ESTADO DA APLICAÇÃO ---
         const canvas = document.getElementById('canvas-musical');
         const ctx = canvas.getContext('2d');
 
         let notasDesenhadas = []; // Lista para guardar as notas colocadas pelos alunos
         let ferramentaAtual = 'seminima'; // Ferramenta padrão ativa ('seminima', 'minima', 'borracha')
-        let cursorNotaHover = null; // Guarda a nota que está sob a mira do mouse
+        let cursorNotaHover = null; // Guarda a nota que está sob a mira do cursor
         let cursorX = 0; // Coordenada X atual do cursor
-        let somHabilitado = true; // Controla se o aplicativo emite som
-        let tocandoMelodia = false; // Indica se a composição está sendo reproduzida
+        let somHabilitado = true; // Controla se a aplicação emite som
+        let tocandoMelodia = false; // Indica se a composição está a ser reproduzida
         let indiceNotaTocando = -1; // Nota atualmente acesa no playback
-        let audioCtx = null; // Contexto de áudio criado sob demanda
+        let audioCtx = null; // Contexto de áudio criado sob procura (interação do utilizador)
 
         // --- EVENTOS INICIAIS ---
         window.addEventListener('load', () => {
@@ -156,7 +156,7 @@
 
         window.addEventListener('resize', redimensionarCanvas);
 
-        // Adaptação para telas de alta densidade (Retina/Mobile) para evitar linhas borradas
+        // Adaptação para ecrãs de alta densidade (Retina/Mobile) para evitar linhas desfocadas
         function redimensionarCanvas() {
             const rect = canvas.parentNode.getBoundingClientRect();
             canvas.width = rect.width * window.devicePixelRatio;
@@ -165,18 +165,18 @@
             desenharTudo();
         }
 
-        // --- SISTEMA DE SINTETIZADOR WEB AUDIO ---
+        // --- SINTETIZADOR WEB AUDIO API ---
         // Cria um som suave que simula um instrumento de sopro/flauta
         function emitirSom(frequencia, duracao = 0.6) {
             if (!somHabilitado) return;
 
             try {
-                // Inicializa o áudio na primeira interação (exigência de segurança dos navegadores)
+                // Inicializa o áudio na primeira interação do utilizador
                 if (!audioCtx) {
                     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
                 }
 
-                // Garante que o áudio não está suspenso
+                // Garante que o contexto de áudio não está suspenso
                 if (audioCtx.state === 'suspended') {
                     audioCtx.resume();
                 }
@@ -184,11 +184,11 @@
                 const oscilador = audioCtx.createOscillator();
                 const controleVolume = audioCtx.createGain();
 
-                // Tipo de onda triangular produz um som mais doce/infantil (ideal para educação)
+                // Tipo de onda triangular produz um som mais doce e harmonioso
                 oscilador.type = 'triangle';
                 oscilador.frequency.setValueAtTime(frequencia, audioCtx.currentTime);
 
-                // Envoltória acústica (evita estalos e cliques nos ouvidos)
+                // Envoltória acústica (evita estalos nos ouvidos)
                 controleVolume.gain.setValueAtTime(0, audioCtx.currentTime);
                 // Ataque rápido (som começa suavemente)
                 controleVolume.gain.linearRampToValueAtTime(0.25, audioCtx.currentTime + 0.05);
@@ -213,7 +213,7 @@
             // Limpa o canvas para o redesenho
             ctx.clearRect(0, 0, w, h);
 
-            // Espaçamento dinâmico entre as linhas com base na altura da tela
+            // Espaçamento dinâmico entre as linhas com base na altura do ecrã
             const espacamento = h / 14;
             const centroY = h / 2;
 
@@ -230,23 +230,23 @@
                 ctx.stroke();
             }
 
-            // 2. DESENHAR A CLAVE DE SOL 𝄞 (Utilizando o caractere Unicode nativo para leveza e fidelidade)
+            // 2. DESENHAR A CLAVE DE SOL 𝄞 (Utilizando o caractere Unicode nativo)
             ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
             // Ajusta o tamanho da Clave proporcionalmente à pauta
             const tamanhoClave = espacamento * 6;
             ctx.font = `${tamanhoClave}px serif`;
             ctx.textAlign = "left";
             ctx.textBaseline = "middle";
-            // A Clave de Sol se apoia na 2ª linha (Índice 4)
+            // A Clave de Sol apoia-se na 2ª linha (Índice 4)
             const yClave = calcularY(4, centroY, espacamento) + (espacamento * 0.3);
             ctx.fillText("𝄞", 40, yClave);
 
-            // 3. DESENHAR AS NOTAS QUE O USUÁRIO SALVOU
+            // 3. DESENHAR AS NOTAS SALVAS
             notasDesenhadas.forEach((nota, index) => {
                 const x = nota.xPct * w;
                 const y = calcularY(nota.notaIndex, centroY, espacamento);
                 
-                // Destaca visualmente a nota que está tocando na melodia
+                // Destaca visualmente a nota que está a ser tocada
                 const estaTocando = tocandoMelodia && index === indiceNotaTocando;
                 desenharCabecaNota(x, y, espacamento, nota.tipo, estaTocando);
                 desenharHasteNota(x, y, espacamento, nota.notaIndex, nota.tipo, estaTocando);
@@ -259,8 +259,8 @@
                 ctx.save();
                 
                 if (ferramentaAtual === 'borracha') {
-                    // Se for borracha, mostra um alvo vermelho ao redor da nota sob o mouse
-                    ctx.strokeStyle = "rgba(239, 68, 68, 0.7)";
+                    // Se for borracha, mostra um alvo vermelho ao redor da nota sob o cursor
+                    ctx.strokeStyle = "rgba(239, 68, 68, 0.75)";
                     ctx.lineWidth = 3;
                     ctx.beginPath();
                     ctx.arc(cursorX, yHover, espacamento * 0.8, 0, Math.PI * 2);
@@ -292,7 +292,7 @@
             const raioX = espacamento * 0.65;
             const raioY = espacamento * 0.45;
 
-            // Define cor: amarelo brilhante se estiver tocando, branco giz no padrão
+            // Define cor: amarelo brilhante se estiver tocando, branco de giz no padrão
             if (destacado) {
                 ctx.fillStyle = "#fbbf24";
                 ctx.shadowColor = "#fbbf24";
@@ -311,8 +311,8 @@
                 // Semínima tem a cabeça preenchida
                 ctx.fill();
             } else {
-                // Mínima ou semibreve são ocas
-                ctx.fillStyle = "rgba(13, 31, 24, 0.9)"; // Cor interna do quadro
+                // Mínima é oca (corresponde ao tom de fundo escuro do quadro negro)
+                ctx.fillStyle = "rgba(15, 17, 21, 0.95)"; 
                 ctx.fill();
                 ctx.stroke();
             }
@@ -320,11 +320,8 @@
             ctx.restore();
         }
 
-        // Desenha a haste vertical de acordo com a regra de escrita musical
+        // Desenha a haste vertical de acordo com as regras de escrita musical
         function desenharHasteNota(x, y, espacamento, notaIndex, tipo, destacado) {
-            // Notas do tipo "semibreve" (ou representação similar vazia) não têm haste
-            if (tipo === 'semibreve') return; 
-
             ctx.save();
             ctx.strokeStyle = destacado ? "#fbbf24" : "#ffffff";
             ctx.lineWidth = 3.5;
@@ -351,13 +348,12 @@
 
         // Desenha as pequenas linhas extras para notas muito agudas (Lá) ou muito graves (Dó central)
         function desenharLinhasSuplementaresSeNecessario(x, y, espacamento, notaIndex) {
-            // Dó central (Índice 0) ou Lá agudo (Índice 12) necessitam de suporte visual
             if (notaIndex === 0 || notaIndex === 12) {
                 ctx.save();
                 ctx.strokeStyle = "rgba(255, 255, 255, 0.9)";
                 ctx.lineWidth = 3;
                 ctx.beginPath();
-                // Desenha um traço horizontal atravessando a nota
+                // Desenha um traço horizontal a atravessar a nota
                 ctx.moveTo(x - espacamento * 1.1, y);
                 ctx.lineTo(x + espacamento * 1.1, y);
                 ctx.stroke();
@@ -367,7 +363,7 @@
 
         // --- SISTEMA DE CAPTURA DE CLIQUES E TOQUES (INTERFACE) ---
 
-        // Unificado usando Pointer Events (Dá suporte nativo a mouse, caneta digital e telas de toque)
+        // Unificado usando Pointer Events (Dá suporte nativo a rato, caneta digital e ecrãs tácteis)
         canvas.addEventListener('pointermove', lidarComMovimento);
         canvas.addEventListener('pointerdown', lidarComClique);
         canvas.addEventListener('pointerleave', () => {
@@ -379,7 +375,7 @@
         // Interpreta a posição do ponteiro no quadro
         function obterPosicaoCursor(event) {
             const rect = canvas.getBoundingClientRect();
-            // Calcula o X e Y reais relativo à área útil do canvas
+            // Calcula o X e Y reais relativos à área útil do canvas
             const scaleX = (canvas.width / window.devicePixelRatio) / rect.width;
             const scaleY = (canvas.height / window.devicePixelRatio) / rect.height;
 
@@ -413,11 +409,11 @@
                 }
             });
 
-            // Se o mouse estiver suficientemente perto de uma linha ou espaço válido
+            // Se o rato estiver suficientemente perto de uma linha ou espaço válido
             if (menorDistancia < espacamento * 0.8) {
                 cursorNotaHover = notaMaisProxima;
                 
-                // Atualiza o painel de informações em português
+                // Atualiza o painel de informações
                 const elementoInfo = document.getElementById('info-nota');
                 if (ferramentaAtual === 'borracha') {
                     elementoInfo.innerHTML = `Modo Borracha 🧹 <span class="text-red-400 font-bold">Clique para apagar</span> nesta área`;
@@ -432,10 +428,9 @@
         }
 
         function lidarComClique(event) {
-            // Evita criar notas acidentalmente se a composição estiver tocando
             if (tocandoMelodia) return;
 
-            // Garante o início do áudio no primeiro clique do aluno
+            // Garante o início do áudio na primeira interação do utilizador
             if (audioCtx && audioCtx.state === 'suspended') {
                 audioCtx.resume();
             }
@@ -444,7 +439,6 @@
                 if (ferramentaAtual === 'borracha') {
                     // --- MODO APAGADOR ---
                     const w = canvas.width / window.devicePixelRatio;
-                    // Procura se existe alguma nota desenhada próxima a esta coordenada
                     const indiceParaRemover = notasDesenhadas.findIndex(nota => {
                         const notaX = nota.xPct * w;
                         const distanciaX = Math.abs(cursorX - notaX);
@@ -458,7 +452,7 @@
                 } else {
                     // --- MODO DESENHAR NOTA ---
                     const w = canvas.width / window.devicePixelRatio;
-                    // Converte a posição X em porcentagem (assim o app fica 100% responsivo)
+                    // Converte a posição X em percentagem para responsividade
                     const xPct = cursorX / w;
 
                     // Adiciona a nota na coleção de desenhos
@@ -470,7 +464,7 @@
                         freq: cursorNotaHover.freq
                     });
 
-                    // Emite o som da nota selecionada para feedback do aluno
+                    // Emite o som da nota selecionada para feedback imediato
                     emitirSom(cursorNotaHover.freq);
                 }
 
@@ -483,7 +477,7 @@
 
         function togglePlayMelodia() {
             if (notasDesenhadas.length === 0) {
-                alertCustomizado("Desene algumas notas no quadro antes de tocar! 😊");
+                alertCustomizado("Desenhe algumas notas no quadro antes de tocar! 😊");
                 return;
             }
 
@@ -499,10 +493,9 @@
             indiceNotaTocando = 0;
             
             // Organiza as notas desenhadas de forma cronológica (da esquerda para a direita)
-            // Isso permite que o aluno desenhe fora de ordem, mas ouça a música na ordem de leitura correta!
             notasDesenhadas.sort((a, b) => a.xPct - b.xPct);
 
-            // Altera visualmente os botões
+            // Altera visualmente os botões para estado ativo de paragem
             document.getElementById('play-icon').textContent = "⏹️";
             document.getElementById('play-text').textContent = "Parar Melodia";
             document.getElementById('btn-tocar').classList.replace('from-amber-500', 'from-red-600');
@@ -518,13 +511,12 @@
             if (indiceNotaTocando < notasDesenhadas.length) {
                 const notaAtual = notasDesenhadas[indiceNotaTocando];
                 
-                // Define tempo de som dependendo da nota (mínima dura o dobro da semínima)
+                // Define tempo de som dependendo do tipo de nota (mínima dura o dobro)
                 const tempoSom = notaAtual.tipo === 'minima' ? 0.9 : 0.45;
                 emitirSom(notaAtual.freq, tempoSom);
 
                 desenharTudo();
 
-                // Define intervalo para a próxima nota (notas longas demoram mais para passar)
                 const tempoDeEspera = notaAtual.tipo === 'minima' ? 1000 : 500;
 
                 loopPlayback = setTimeout(() => {
@@ -532,7 +524,7 @@
                     tocarProximaNotaDaMelodia();
                 }, tempoDeEspera);
             } else {
-                // Chegou ao fim da melodia
+                // Fim da melodia alcançado
                 pararMelodia();
             }
         }
@@ -542,9 +534,9 @@
             indiceNotaTocando = -1;
             clearTimeout(loopPlayback);
 
-            // Restaura o visual original dos botões
+            // Restaura o visual original de audição
             document.getElementById('play-icon').textContent = "▶️";
-            document.getElementById('play-text').textContent = "Ouvir Minha Melodia";
+            document.getElementById('play-text').textContent = "Ouvir a Minha Melodia";
             document.getElementById('btn-tocar').classList.replace('from-red-600', 'from-amber-500');
             document.getElementById('btn-tocar').classList.replace('to-red-500', 'to-yellow-500');
             document.getElementById('btn-tocar').classList.replace('border-red-800', 'border-amber-700');
@@ -552,19 +544,19 @@
             desenharTudo();
         }
 
-        // --- FUNÇÕES UTILIÁRIAS (BOTÕES) ---
+        // --- FUNÇÕES UTILITÁRIAS ---
 
         // Alterna entre Semínima, Mínima e Borracha
         function mudarFerramenta(novaFerramenta) {
             ferramentaAtual = novaFerramenta;
 
-            // Reseta estilo visual de todos os botões de ferramentas
+            // Limpa as classes ativas de todas as ferramentas
             document.querySelectorAll('.btn-tool').forEach(btn => {
                 btn.classList.remove('bg-emerald-600', 'text-white', 'border-emerald-800');
                 btn.classList.add('bg-slate-800', 'text-slate-300', 'border-slate-900');
             });
 
-            // Aplica destaque visual no botão ativo selecionado
+            // Ativa o destaque do botão correto
             let idBotaoAtivo = 'btn-seminima';
             if (novaFerramenta === 'minima') idBotaoAtivo = 'btn-minima';
             if (novaFerramenta === 'borracha') idBotaoAtivo = 'btn-borracha';
@@ -574,32 +566,32 @@
             botaoAtivo.classList.add('bg-emerald-600', 'text-white', 'border-emerald-800');
         }
 
-        // Apaga todas as notas do quadro de giz
+        // Apaga todas as notas do ecrã
         function limparQuadro() {
             pararMelodia();
             notasDesenhadas = [];
             desenharTudo();
-            emitirSom(200, 0.2); // Som rápido indicando ação concluída
+            emitirSom(200, 0.2); // Feedback acústico de limpeza
         }
 
-        // Liga/Desliga o sistema de áudio inteiro
+        // Ativa/Desativa o som global
         function toggleSomGeral() {
             somHabilitado = !somHabilitado;
             const btn = document.getElementById('btn-som');
             const statusSom = document.getElementById('status-som');
 
             if (somHabilitado) {
-                btn.innerHTML = "<span>🔊</span> Som: Ativado";
+                btn.innerHTML = "<span>🔊</span> Som: Ativo";
                 btn.classList.replace('bg-red-950/40', 'bg-slate-800/80');
-                statusSom.textContent = "Som habilitado 🔊";
+                statusSom.textContent = "Som ativo 🔊";
             } else {
-                btn.innerHTML = "<span>🔇</span> Som: Silenciado";
+                btn.innerHTML = "<span>🔇</span> Som: Desativado";
                 btn.classList.replace('bg-slate-800/80', 'bg-red-950/40');
-                statusSom.textContent = "Aplicativo silenciado 🔇";
+                statusSom.textContent = "Aplicação silenciada 🔇";
             }
         }
 
-        // Substituição moderna e elegante do alert() nativo para não interromper a interface
+        // Alerta elegante diretamente na barra de estado para evitar interrupções de janelas de pop-up
         function alertCustomizado(mensagem) {
             const painelInfo = document.getElementById('info-nota');
             painelInfo.innerHTML = `<span class="text-yellow-400 font-bold">⚠️ ${mensagem}</span>`;
